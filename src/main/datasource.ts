@@ -7,7 +7,7 @@ export const config: TypeOrmModuleAsyncOptions = {
     port: 5432,
     username: 'username',
     password: 'password',
-    database: 'test',
+    database: 'event',
     entities: [
     ],
     synchronize: true,

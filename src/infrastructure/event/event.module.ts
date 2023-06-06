@@ -25,4 +25,4 @@ import { DatabaseModule } from '@infrastructure/database/database.module'
   exports: [],
   controllers: []
 })
-export class QuizModule {}
+export class EventModule {}

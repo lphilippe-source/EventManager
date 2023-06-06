@@ -5,6 +5,7 @@ export class EventService {
   }
 
   async addEvent (event: any): Promise<any> {
-    return await this.eventRepository.addEvent(event)
+    // return await this.eventRepository.addEvent(event)
+    await this.eventRepository.createEvent(event)
   }
 }

@@ -1,10 +1,12 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { DatabaseModule } from '@infrastructure/database/database.module'
 import { LoggerMiddleware } from '@infrastructure/middlewares/logger'
+import { EventModule } from '@infrastructure/event/event.module'
 
 @Module({
   imports: [
-    DatabaseModule
+    DatabaseModule,
+    EventModule
   ]
 
 })

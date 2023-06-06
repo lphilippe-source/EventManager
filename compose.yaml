@@ -15,7 +15,7 @@ services:
     command: sh -c "npm run start:dev"
 
   database:
-    image: 'postgres:14.5'
+    image: 'postgres:10.2'
     ports:
       - "5431:5432"
     env_file:
