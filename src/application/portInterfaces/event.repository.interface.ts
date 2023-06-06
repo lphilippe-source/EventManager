@@ -2,8 +2,10 @@ export interface EventRepositoryInterface {
 
   save: (event: EventDto) => Promise<EventDto>
   find: () => Promise<EventDto[]>
+  update: (event: any, partial: Partial<EventDto>) => Promise<any>
 }
 export interface EventDto{
+  id?: string
   title?: string
 
   category?: string

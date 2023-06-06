@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common'
-import { DatabaseModule } from '@infrastructure/database/database.module'
 import { UserController } from '@infrastructure/user/user.controller'
 import { DataSource } from 'typeorm'
 import { UserService } from '@application/user.service'
 @Module({
-  imports: [DatabaseModule],
+  imports: [],
   controllers: [UserController],
   providers: [{
     provide: 'UserServiceInterface',
@@ -12,8 +11,8 @@ import { UserService } from '@application/user.service'
       return new UserService(datasource.getRepository('User'))
     },
     inject: [DataSource]
-
-  }]
+  }],
+  exports: ['UserServiceInterface']
 })
 export class UserModule {
 }

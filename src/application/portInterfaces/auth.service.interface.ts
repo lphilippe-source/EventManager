@@ -1,4 +1,4 @@
 export interface AuthServiceInterface {
-  validateUser: (username: string, pass: string) => Promise<any>
+  validateUser: (email: string, password: string) => Promise<any>
 
 }

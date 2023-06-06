@@ -4,15 +4,12 @@ import { UserServiceInterface } from '@application/portInterfaces/user.service.i
 export class UserService implements UserServiceInterface {
   constructor (private readonly userRepository: UserRepositoryInterface) { }
 
-  async findAll (): Promise<UserDto[]> {
-    return await this.userRepository.find()
-  }
-
   async createUser (user: UserDto): Promise<UserDto> {
-    return await this.userRepository.save(user)
+    const { password, ...createdUser } = await this.userRepository.save(user)
+    return createdUser
   }
 
-  async findOneUser (username: string): Promise<UserDto | null> {
-    return await this.userRepository.findOne(username)
+  async findOneUser (email: string): Promise<UserDto | null> {
+    return await this.userRepository.findOne({ where: { email } })
   }
 }

@@ -12,4 +12,8 @@ export class EventService implements EventServiceInterface {
   async createEvent (event: EventDto): Promise<EventDto> {
     return await this.eventRepository.save(event)
   }
+
+  async updateEvent (id: string, event: EventDto): Promise<any> {
+    return await this.eventRepository.update({ id }, event)
+  }
 }

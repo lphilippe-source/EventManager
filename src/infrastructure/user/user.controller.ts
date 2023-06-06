@@ -1,24 +1,21 @@
 import { UserServiceInterface } from '@application/portInterfaces/user.service.interface'
 import { UserDto } from '@application/portInterfaces/user.repository.interface'
-import { Controller, Get, Inject } from '@nestjs/common'
+import { Body, Controller, Inject, Post, Request, UseGuards } from '@nestjs/common'
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller('user')
 export class UserController {
   constructor (@Inject('UserServiceInterface') private readonly userService: UserServiceInterface) {
   }
 
-  @Get()
-  async findAll (): Promise<UserDto[]> {
-    return await this.userService.findAll()
+  @Post('/register')
+  async create (@Body() user: UserDto): Promise<UserDto> {
+    return await this.userService.createUser(user)
   }
 
-  // @Post('/register')
-  // async create (user: UserDto): Promise<UserDto> {
-  //   return await this.userService.create(user)
-  // }
-
-  // @Post()
-  // async async (email, password): Promise<UserDto> {
-  //   return await this.userService.create(user)
-  // }
+  @UseGuards(AuthGuard('local'))
+  @Post('/login')
+  async login (@Request() req: Record<'user', any>): Promise<UserDto> {
+    return req.user
+  }
 }

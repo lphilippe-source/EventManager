@@ -1,13 +1,11 @@
 
 import { Module } from '@nestjs/common'
-import { DatabaseModule } from '@infrastructure/database/database.module'
 import { EventService } from '@application/event.service'
 import { DataSource } from 'typeorm'
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [],
   providers: [
-
     {
       provide: 'EventServiceInterface',
       useFactory: (datasource: DataSource) => {

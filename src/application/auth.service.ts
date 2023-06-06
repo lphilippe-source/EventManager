@@ -3,11 +3,11 @@ import { UserServiceInterface } from '@application/portInterfaces/user.service.i
 import { AuthServiceInterface } from '@application/portInterfaces/auth.service.interface'
 
 export class AuthService implements AuthServiceInterface {
-  constructor (private readonly usersService: UserServiceInterface) {}
+  constructor (private readonly userService: UserServiceInterface) {}
 
-  async validateUser (username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOneUser(username)
-    if (user && user.password === pass) {
+  async validateUser (email: string, password: string): Promise<any> {
+    const user = await this.userService.findOneUser(email)
+    if (user && user.password === password) {
       const { password, ...result } = user
       return result
     }
