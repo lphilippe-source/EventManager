@@ -12,8 +12,18 @@ export class EventController {
     return await this.eventService.findAll()
   }
 
+  @Get(':id')
+  async find (): Promise<EventDto[]> {
+    return await this.eventService.findAll()
+  }
+
   @Post()
   async createEvent (event: EventDto): Promise<EventDto> {
     return await this.eventService.createEvent(event)
   }
+
+  // @Post(':id')
+  // async updateEvent (@Body(event: EventDto)): Promise<boolean> {
+  //   return await this.eventService.createEvent(event)
+  // }
 }

@@ -1,6 +1,7 @@
 import { EventDto, EventRepositoryInterface } from '@application/portInterfaces/event.repository.interface'
+import { EventServiceInterface } from '@application/portInterfaces/event.service.interface'
 
-export class EventService {
+export class EventService implements EventServiceInterface {
   constructor (private readonly eventRepository: EventRepositoryInterface) {
   }
 

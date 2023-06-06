@@ -8,7 +8,11 @@ export class UserService implements UserServiceInterface {
     return await this.userRepository.find()
   }
 
-  async create (user: UserDto): Promise<UserDto> {
+  async createUser (user: UserDto): Promise<UserDto> {
     return await this.userRepository.save(user)
+  }
+
+  async findOneUser (username: string): Promise<UserDto | null> {
+    return await this.userRepository.findOne(username)
   }
 }
