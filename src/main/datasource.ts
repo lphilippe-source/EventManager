@@ -1,4 +1,6 @@
 import { TypeOrmModuleAsyncOptions } from '@nestjs/typeorm'
+import { Event } from '@persistence/event.entity.typeorm'
+import { User } from '@persistence/user.entity.typeorm'
 
 export const config: TypeOrmModuleAsyncOptions = {
   useFactory: () => ({
@@ -9,6 +11,8 @@ export const config: TypeOrmModuleAsyncOptions = {
     password: 'password',
     database: 'event',
     entities: [
+      Event,
+      User
     ],
     synchronize: true,
     logging: true

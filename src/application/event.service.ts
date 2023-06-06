@@ -1,11 +1,14 @@
-import { EventRepositoryInterface } from '@application/portInterfaces/event.repository.interface'
+import { EventDto, EventRepositoryInterface } from '@application/portInterfaces/event.repository.interface'
 
 export class EventService {
   constructor (private readonly eventRepository: EventRepositoryInterface) {
   }
 
-  async addEvent (event: any): Promise<any> {
-    // return await this.eventRepository.addEvent(event)
-    await this.eventRepository.createEvent(event)
+  async findAll (): Promise<EventDto[]> {
+    return await this.eventRepository.find()
+  }
+
+  async createEvent (event: EventDto): Promise<EventDto> {
+    return await this.eventRepository.save(event)
   }
 }
