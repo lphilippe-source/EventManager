@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  quiz-api:
+    working_dir: /app
+    image: node:lts-alpine3.17
+    ports:
+      - "3000:3000"
+    networks:
+        - postgres-network
+    depends_on:
+      - database
+    volumes:
+        - ./:/app
+    command: sh -c "npm run start:dev"
+
+  database:
+    image: 'postgres:14.5'
+    ports:
+      - "5431:5432"
+    env_file:
+      - .env
+    networks:
+      - postgres-network
+    environment:
+     POSTGRES_PASSWORD: password
+     POSTGRES_DB: test
+     POSTGRES_USER: username
+    volumes:
+      - ./postgres.conf:/etc/postgresql/postgresql.conf
+#      - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+#      - ./db-data/:/var/lib/postgresql/data/
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#    user: "1000:1000"
+
+#    command: sh -c psql -U username -c 'create database test;'
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "15433:80"
+    env_file:
+      - .env
+    depends_on:
+      - database
+    networks:
+      - postgres-network
+#    volumes:
+#      - ./pgadmin-data/:/var/lib/pgadmin/
+    user: "root:root"
+networks:
+  postgres-network:
+    driver: bridge
