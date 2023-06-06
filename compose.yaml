@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  quiz-api:
+  event-api:
     working_dir: /app
     image: node:lts-alpine3.17
     ports:

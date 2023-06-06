@@ -10,6 +10,7 @@ describe('fizzbuzz', () => {
     const result = '1'
     expect(fizzBuzz.start(result)).toBe(1)
   })
+
   it('should return 2', () => {
     const result = '2'
     expect(fizzBuzz.start(result)).toBe(2)
