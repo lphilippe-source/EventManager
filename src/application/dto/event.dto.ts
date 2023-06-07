@@ -12,8 +12,6 @@ export interface EventDto{
 
   participants?: any[]
 
-  numero?: number
-
   adresse?: string
 
   codePostal?: number

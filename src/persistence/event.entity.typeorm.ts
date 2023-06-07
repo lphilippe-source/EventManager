@@ -25,9 +25,6 @@ export class Event {
     participants: string[]
 
   @Column({ nullable: true })
-    numero: number
-
-  @Column({ nullable: true })
     adresse: string
 
   @Column({ nullable: true })

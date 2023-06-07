@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Logger, Module } from '@nestjs/common'
 import { UserController } from '@infrastructure/user/user.controller'
 import { DataSource } from 'typeorm'
 import { UserService } from '@application/user.service'
@@ -19,7 +19,7 @@ import { UserParticipateEventService } from '@application/user.participate.event
   {
     provide: 'UserParticipateEventServiceInterface',
     useFactory: (datasource: DataSource, eventService: EventServiceInterface) => {
-      return new UserParticipateEventService(datasource.getRepository('User'), eventService)
+      return new UserParticipateEventService(datasource.getRepository('User'), eventService, new Logger('UserParticipateEventService'))
     },
     inject: [DataSource, 'EventServiceInterface']
   }],
