@@ -3,12 +3,13 @@ import {
   UserParticipateEventServiceInterface
 } from '@application/portInterfaces/user.participate.event.service.interface'
 import { EventServiceInterface } from '@application/portInterfaces/event.service.interface'
-import { Logger } from '@nestjs/common'
+import { LoggerInterface } from '@application/portInterfaces/logger.interface'
 
 export class UserParticipateEventService implements UserParticipateEventServiceInterface {
-  constructor (private readonly userRepository: UserRepositoryInterface,
+  constructor (
+    private readonly userRepository: UserRepositoryInterface,
     private readonly eventService: EventServiceInterface,
-    private readonly logger: Logger
+    private readonly logger: LoggerInterface
   ) {
   }
 

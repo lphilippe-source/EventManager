@@ -19,7 +19,7 @@ import { UserParticipateEventService } from '@application/user.participate.event
   {
     provide: 'UserParticipateEventServiceInterface',
     useFactory: (datasource: DataSource, eventService: EventServiceInterface) => {
-      return new UserParticipateEventService(datasource.getRepository('User'), eventService, new Logger('UserParticipateEventService'))
+      return new UserParticipateEventService(datasource.getRepository('User'), eventService, new Logger('UserParticipateEvent'))
     },
     inject: [DataSource, 'EventServiceInterface']
   }],
