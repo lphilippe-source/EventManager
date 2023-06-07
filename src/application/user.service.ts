@@ -1,5 +1,6 @@
-import { UserDto, UserRepositoryInterface } from '@application/portInterfaces/user.repository.interface'
+import { UserRepositoryInterface } from '@application/portInterfaces/user.repository.interface'
 import { UserServiceInterface } from '@application/portInterfaces/user.service.interface'
+import { UserDto } from '@application/dto/user.dto'
 
 export class UserService implements UserServiceInterface {
   constructor (private readonly userRepository: UserRepositoryInterface) { }

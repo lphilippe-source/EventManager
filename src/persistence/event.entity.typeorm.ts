@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { User } from '@persistence/user.entity.typeorm'
 
 @Entity()
 export class Event {
@@ -11,30 +12,30 @@ export class Event {
   @Column()
     category: string
 
-  @Column()
+  @Column({ nullable: true })
     description: string
 
   @Column()
-    startTime: Date
+    startTime: string
 
   @Column()
-    endTime: Date
+    endTime: string
 
-  @Column()
-    nbPartipants: number
+  @Column({ type: 'jsonb', nullable: true })
+    participants: string[]
 
-  @Column()
+  @Column({ nullable: true })
     numero: number
 
-  @Column()
+  @Column({ nullable: true })
     adresse: string
 
-  @Column()
+  @Column({ nullable: true })
     codePostal: number
 
-  @Column()
+  @Column({ nullable: true })
     ville: string
 
-  @Column()
-    idUser: number
+  @ManyToOne(() => User, user => user.events)
+    idUser: User
 }

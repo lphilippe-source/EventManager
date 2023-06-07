@@ -2,6 +2,7 @@
 import { Module } from '@nestjs/common'
 import { EventService } from '@application/event.service'
 import { DataSource } from 'typeorm'
+import { EventController } from '@infrastructure/event/event.controller'
 
 @Module({
   imports: [],
@@ -14,7 +15,7 @@ import { DataSource } from 'typeorm'
       inject: [DataSource]
     }
   ],
-  exports: [],
-  controllers: []
+  exports: ['EventServiceInterface'],
+  controllers: [EventController]
 })
 export class EventModule {}

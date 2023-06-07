@@ -1,7 +1,7 @@
 import { UserServiceInterface } from '@application/portInterfaces/user.service.interface'
-import { UserDto } from '@application/portInterfaces/user.repository.interface'
 import { Body, Controller, Inject, Post, Request, UseGuards } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
+import { UserDto } from '@application/dto/user.dto'
 
 @Controller('user')
 export class UserController {
