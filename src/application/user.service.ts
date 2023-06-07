@@ -10,7 +10,12 @@ export class UserService implements UserServiceInterface {
     return createdUser
   }
 
-  async findOneUser (email: string): Promise<UserDto | null> {
-    return await this.userRepository.findOne({ where: { email } })
+  async findOneUser (whereClose: Record<string, any>, login: boolean): Promise<UserDto | null> {
+    const user = await this.userRepository.findOne(whereClose)
+    if (!login && user?.password) {
+      const { password, ...result } = user
+      return result
+    }
+    return user
   }
 }

@@ -1,5 +1,5 @@
 import { UserServiceInterface } from '@application/portInterfaces/user.service.interface'
-import { Body, Controller, Inject, Post, Request, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Inject, Param, Post, Request, UseGuards } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { UserDto } from '@application/dto/user.dto'
 
@@ -17,5 +17,10 @@ export class UserController {
   @Post('/login')
   async login (@Request() req: Record<'user', any>): Promise<UserDto> {
     return req.user
+  }
+
+  @Get('/:id')
+  async findUserById (@Param('id')id: string): Promise<UserDto | null> {
+    return await this.userService.findOneUser({ where: { id } }, false)
   }
 }

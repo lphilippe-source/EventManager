@@ -6,7 +6,8 @@ export class AuthService implements AuthServiceInterface {
   constructor (private readonly userService: UserServiceInterface) {}
 
   async validateUser (email: string, password: string): Promise<any> {
-    const user = await this.userService.findOneUser(email)
+    const whereClose = { where: { email } }
+    const user = await this.userService.findOneUser(whereClose, true)
     if (user && user.password === password) {
       const { password, ...result } = user
       return result

@@ -7,7 +7,10 @@ export class EventService implements EventServiceInterface {
   }
 
   async findAll (eventId: any = null): Promise<EventDto[]> {
-    return await this.eventRepository.find(eventId || {})
+    if (eventId) {
+      return await this.eventRepository.find({ where: { id: eventId } })
+    }
+    return await this.eventRepository.find({})
   }
 
   async createEvent (event: EventDto): Promise<EventDto> {
